@@ -1,6 +1,5 @@
 """Docblock manipulation utilities."""
 
-from itertools import ifilter
 from pprint import pformat
 
 
@@ -30,8 +29,14 @@ def _indent(string, indent_level=4):
 
 def _getindent(string):
     try:
-        indent_levels = (_nspaces(x) for x in string.splitlines() if x)
-        return min(ifilter(lambda x: x != 0, indent_levels)) or 0
+        lines = string.splitlines()
+
+        # drop first line if it has no indent level
+        if _nspaces(lines[0]) == 0:
+            lines.pop(0)
+
+        indent_levels = (_nspaces(x) for x in lines if x)
+        return min(indent_levels) or 0
     except (AttributeError, ValueError):
         # Things that don't look like strings and strings with no
         # indentation should report indentation of 0

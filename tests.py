@@ -44,3 +44,8 @@ def test_getindent():
 def test_getindent():
     assert _getindent("foo") == 0
 
+
+def test_getindent_multiline_no_default_indent():
+    assert _getindent("foo\nbar\n    baz") == 0
+
+
