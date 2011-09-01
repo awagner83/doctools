@@ -3,10 +3,10 @@ from setuptools import setup, find_packages
 
 setup(
     name='doctools',
-    version='0.1.1',
+    version='0.1.2',
     description='docblock manipulation utilities',
     long_description=open('README.rst').read(),
-    packages=find_packages(),
+    py_modules=['doctools'],
     install_requires=['pytest', 'pytest-cov'],
     author = 'Adam Wagner',
     author_email = 'awagner83@gmail.com',
