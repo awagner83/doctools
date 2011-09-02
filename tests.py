@@ -58,7 +58,7 @@ def test_getindent_multiline_no_default_indent():
     assert _getindent("foo\nbar\n    baz") == 0
 
 
-def test_append_docs_from():
+def test_include_docs_from():
     def foo():
         """foo docs."""
 
@@ -67,6 +67,17 @@ def test_append_docs_from():
         """bar docs."""
 
     assert bar.__doc__ == 'bar docs.\n\nfoo docs.'
+
+
+def test_include_docs_from_undocumented():
+    def foo():
+        pass
+
+    @include_docs_from(foo)
+    def bar():
+        """bar docs."""
+
+    assert bar.__doc__ == 'bar docs.'
 
 
 
