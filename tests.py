@@ -19,6 +19,14 @@ def test_append_to_docs():
         more random docs"""
 
 
+def test_append_to_docs_undocumented():
+    def foo():
+        pass
+
+    append_to_docs(foo, 'some documentation')
+    assert foo.__doc__ == 'some documentation'
+
+
 def test_append_var_to_docs():
     def foo():
         """some

@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='doctools',
-    version='0.2',
+    version='0.2.1',
     description='docblock manipulation utilities',
     long_description=open('README.rst').read(),
     py_modules=['doctools'],

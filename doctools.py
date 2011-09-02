@@ -5,8 +5,11 @@ from pprint import pformat
 
 def append_to_docs(fn, text):
     """Append text to a functions existing docblock."""
-    min_indent = _getindent(fn.__doc__)
-    fn.__doc__ = '%s\n\n%s' % (fn.__doc__, _indent(text, min_indent))
+    if fn.__doc__:
+        min_indent = _getindent(fn.__doc__)
+        fn.__doc__ = '%s\n\n%s' % (fn.__doc__, _indent(text, min_indent))
+    else:
+        fn.__doc__ = text
 
 
 def append_var_to_docs(fn, label, value):
