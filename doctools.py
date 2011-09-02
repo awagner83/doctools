@@ -21,6 +21,14 @@ def append_var_to_docs(fn, label, value):
         )
 
 
+def include_docs_from(source_function):
+    """Decorator copying documentation from one function onto another."""
+    def decorator(dest_function):
+        append_to_docs(dest_function, source_function.__doc__)
+        return dest_function
+    return decorator
+
+
 def _indent(string, indent_level=4):
     """Indent each line by `indent_level` of spaces."""
     return '\n'.join('%s%s' % (' '*indent_level, x) for x in

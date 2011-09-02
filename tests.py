@@ -1,4 +1,5 @@
-from doctools import append_to_docs, append_var_to_docs, _getindent
+from doctools import (append_to_docs, append_var_to_docs,
+        include_docs_from, _getindent)
 
 
 def test_append_to_docs():
@@ -47,5 +48,17 @@ def test_getindent():
 
 def test_getindent_multiline_no_default_indent():
     assert _getindent("foo\nbar\n    baz") == 0
+
+
+def test_append_docs_from():
+    def foo():
+        """foo docs."""
+
+    @include_docs_from(foo)
+    def bar():
+        """bar docs."""
+
+    assert bar.__doc__ == 'bar docs.\n\nfoo docs.'
+
 
 
